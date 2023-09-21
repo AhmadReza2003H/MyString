@@ -4,57 +4,54 @@
    Description: Header file for the MyString class, a custom class for storing
    and manipulating strings.  Students should NOT alter this file.
 */
-#ifndef _MYSTR_H_
-#define _MYSTR_H_
+
 #include <iostream>
 
 class MyString
 {
-    /* Stream overloads */
-    friend std::ostream& operator<<(std::ostream&, const MyString&);
-    friend std::istream& operator>>(std::istream&, MyString&);
+  /* Stream overloads */
+  friend std::ostream& operator<<(std::ostream&, const MyString&);
+  friend std::istream& operator>>(std::istream&, MyString&); 
 
-    /* Arithmatic overloads */
-    friend MyString operator+ (const MyString&, const MyString&);
-    friend MyString& operator+=(MyString&, const MyString&);
-    friend MyString& operator++(MyString&);
-    friend MyString& operator--(MyString&);
+  /* Arithmatic overloads */
+  friend MyString operator+ (const MyString&, const MyString&);
+  friend MyString& operator+=(MyString&, const MyString&); 
+  friend MyString& operator++(MyString&);
+  friend MyString& operator--(MyString&);
 
-    /* Comparison overloads */
-    friend bool operator<  (const MyString&, const MyString&);
-    friend bool operator>  (const MyString&, const MyString&);
-    friend bool operator<= (const MyString&, const MyString&);
-    friend bool operator>= (const MyString&, const MyString&);
-    friend bool operator== (const MyString&, const MyString&);
-    friend bool operator!= (const MyString&, const MyString&);
+  /* Comparison overloads */
+  friend bool operator<  (const MyString&, const MyString&);
+  friend bool operator>  (const MyString&, const MyString&);
+  friend bool operator<= (const MyString&, const MyString&);
+  friend bool operator>= (const MyString&, const MyString&);
+  friend bool operator== (const MyString&, const MyString&);
+  friend bool operator!= (const MyString&, const MyString&);
 
-public:
+ public:
+ 
+  MyString(const char* s="");      
+  MyString(const MyString&);
+  ~MyString();
 
-    MyString(const char* s="");
-    MyString(const MyString&);
-    ~MyString();
+  /* Member overloads */
+  MyString& operator=(const MyString&);
+  char operator[] (int) const;      
+  char& operator[](int);                 
 
-    /* Member overloads */
-    MyString& operator=(const MyString&);
-    char operator[] (int) const;
-    char& operator[](int);
-
-    /* Member Utility Functions */
-    void StrCpy(char *, int) const;
-    void ReversedStrCpy(char *, int) const;
+  /* Member Utility Functions */
+  void StrCpy(char *, int) const;
+  void ReversedStrCpy(char *, int) const;
 
 
-    /* Accessors */
-    const char* cstring() const;
-    int GetLength() const;
+  /* Accessors */
+  const char* cstring() const;
+  int GetLength() const;
 
-private:
-    void Resize(int);
+ private:
+  void Resize(int); 
 
-    /* internal string data */
-    char* str_ptr;
-    int str_length;
+  /* internal string data */
+  char* str_ptr;                   
+  int str_length;   
 
 };
-
-#endif
